@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utwórz konto Qooqle</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px 36px; width: 100%; max-width: 450px; text-align: center; box-sizing: border-box; }
+        .logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .blue { color: #4285F4; } .red { color: #EA4335; } .yellow { color: #FBBC05; } .green { color: #34A853; }
+        h2 { font-weight: 400; margin: 10px 0; font-size: 24px; }
+        p { margin-bottom: 30px; color: #202124; }
+        .name-group { display: flex; gap: 10px; }
+        input { width: 100%; padding: 13px 15px; margin-bottom: 15px; border: 1px solid #dadce0; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+        input:focus { outline: none; border: 2px solid #1a73e8; padding: 12px 14px; }
+        .buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+        .btn-link { color: #1a73e8; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .btn-main { background: #1a73e8; color: white; border: none; padding: 10px 24px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span>
+        </div>
+        <h2>Utwórz konto</h2>
+        <p>Wprowadź swoje dane</p>
+        <form onsubmit="alert('Konto utworzone!'); window.location.href='index.html'; return false;">
+            <div class="name-group">
+                <input type="text" placeholder="Imię" required>
+                <input type="text" placeholder="Nazwisko" required>
+            </div>
+            <input type="email" placeholder="Nazwa użytkownika @qooqle.com" required>
+            <input type="password" placeholder="Hasło" required>
+            <input type="password" placeholder="Potwierdź hasło" required>
+            <div class="buttons">
+                <a href="index.html" class="btn-link">Zaloguj się zamiast tego</a>
+                <button type="submit" class="btn-main">Zarejestruj</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
