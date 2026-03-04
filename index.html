@@ -6,30 +6,68 @@
     <style>
         * { box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background-color: #f1f3f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px; width: 450px; min-height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); text-align: center; }
-        .logo { font-size: 32px; font-weight: 500; margin-bottom: 10px; }
+        .container { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px; width: 450px; min-height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); text-align: center; position: relative; }
+        .logo { font-size: 32px; font-weight: 500; margin-bottom: 10px; cursor: pointer; }
         .blue { color: #4285F4; } .red { color: #EA4335; } .yellow { color: #FBBC05; } .green { color: #34A853; }
-        input { width: 100%; padding: 16px 15px; margin: 20px 0 10px; border: 1px solid #dadce0; border-radius: 4px; font-size: 16px; }
-        .buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 50px; }
-        
-        /* KLUCZOWE: Stylizacja linku jako przycisku */
-        .btn-link { color: #1a73e8; text-decoration: none; font-weight: 500; font-size: 14px; cursor: pointer; }
+        h2 { font-weight: 400; font-size: 24px; margin: 10px 0; }
+        p { color: #202124; margin-bottom: 40px; }
+        input { width: 100%; padding: 16px 15px; margin-bottom: 20px; border: 1px solid #dadce0; border-radius: 4px; font-size: 16px; }
+        input:focus { outline: none; border: 2px solid #1a73e8; }
+        .buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+        .btn-link { color: #1a73e8; text-decoration: none; font-weight: 500; font-size: 14px; cursor: pointer; background: none; border: none; }
         .btn-main { background: #1a73e8; color: white; border: none; padding: 12px 28px; border-radius: 4px; font-weight: 500; cursor: pointer; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo"><span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span></div>
-        <h2>Zaloguj się</h2>
-        <p>Użyj konta Qooqle</p>
+        <div class="logo" onclick="location.reload()"><span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span></div>
         
-        <form onsubmit="alert('Próba logowania...'); return false;">
-            <input type="text" placeholder="E-mail lub telefon" required>
+        <div id="step-email">
+            <h2>Zaloguj się</h2>
+            <p>Użyj konta Qooqle</p>
+            <input type="email" id="email-input" placeholder="E-mail lub telefon" required>
             <div class="buttons">
                 <a href="register.html" class="btn-link">Utwórz konto</a>
-                <button type="submit" class="btn-main">Dalej</button>
+                <button type="button" class="btn-main" onclick="goToPassword()">Dalej</button>
             </div>
-        </form>
+        </div>
+
+        <div id="step-password" class="hidden">
+            <h2>Witaj ponownie</h2>
+            <p id="display-email" style="font-weight: bold;"></p>
+            <input type="password" id="pass-input" placeholder="Wpisz hasło" required>
+            <div class="buttons">
+                <button type="button" class="btn-link" onclick="location.reload()">Wróć</button>
+                <button type="button" class="btn-main" onclick="finishLogin()">Zaloguj się</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function goToPassword() {
+            const email = document.getElementById('email-input').value;
+            if (email.trim() === "" || !email.includes('@')) {
+                alert("Wpisz poprawny adres e-mail!");
+                return;
+            }
+            
+            // Zmiana widoku
+            document.getElementById('step-email').classList.add('hidden');
+            document.getElementById('step-password').classList.remove('hidden');
+            document.getElementById('display-email').innerText = email;
+        }
+
+        function finishLogin() {
+            const pass = document.getElementById('pass-input').value;
+            if (pass.length < 4) {
+                alert("Hasło jest za krótkie!");
+            } else {
+                alert("Zalogowano pomyślnie do serwisu Qooqle!");
+                // Tutaj możesz przekierować np. na google.com
+                window.location.href = "https://www.google.com";
+            }
+        }
+    </script>
 </body>
 </html>
