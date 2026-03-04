@@ -6,10 +6,14 @@
     <style>
         * { box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background-color: #f1f3f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px; width: 450px; min-height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); text-align: center; }
-        .logo { font-size: 32px; font-weight: 500; margin-bottom: 10px; }
+        .container { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px; width: 450px; min-height: 550px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); text-align: center; }
+        .logo { font-size: 32px; font-weight: 500; margin-bottom: 10px; cursor: pointer; }
         .blue { color: #4285F4; } .red { color: #EA4335; } .yellow { color: #FBBC05; } .green { color: #34A853; }
-        input { width: 100%; padding: 13px 15px; margin-bottom: 10px; border: 1px solid #dadce0; border-radius: 4px; }
+        h2 { font-weight: 400; font-size: 24px; margin: 10px 0; }
+        p { color: #202124; margin-bottom: 30px; }
+        .name-group { display: flex; gap: 10px; }
+        input { width: 100%; padding: 13px 15px; margin-bottom: 15px; border: 1px solid #dadce0; border-radius: 4px; font-size: 16px; }
+        input:focus { outline: none; border: 2px solid #1a73e8; }
         .buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
         .btn-link { color: #1a73e8; text-decoration: none; font-weight: 500; font-size: 14px; cursor: pointer; }
         .btn-main { background: #1a73e8; color: white; border: none; padding: 12px 24px; border-radius: 4px; font-weight: 500; cursor: pointer; }
@@ -17,20 +21,50 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo"><span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span></div>
+        <div class="logo" onclick="window.location.href='index.html'"><span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span></div>
         <h2>Utwórz konto</h2>
         <p>Wprowadź swoje dane</p>
         
-        <form onsubmit="alert('Konto utworzone!'); window.location.href='index.html'; return false;">
-            <input type="text" placeholder="Imię" required>
-            <input type="text" placeholder="Nazwisko" required>
-            <input type="email" placeholder="Twój adres @qooqle.com" required>
-            <input type="password" placeholder="Hasło" required>
+        <form id="regForm">
+            <div class="name-group">
+                <input type="text" id="fname" placeholder="Imię" required>
+                <input type="text" id="lname" placeholder="Nazwisko" required>
+            </div>
+            <input type="email" id="regEmail" placeholder="Twój adres @qooqle.com" required>
+            <input type="password" id="pass1" placeholder="Hasło" required>
+            <input type="password" id="pass2" placeholder="Potwierdź hasło" required>
+            
             <div class="buttons">
                 <a href="index.html" class="btn-link">Zaloguj się zamiast tego</a>
-                <button type="submit" class="btn-main">Zarejestruj</button>
+                <button type="button" class="btn-main" onclick="validateRegister()">Zarejestruj</button>
             </div>
         </form>
     </div>
+
+    <script>
+        function validateRegister() {
+            const email = document.getElementById('regEmail').value;
+            const p1 = document.getElementById('pass1').value;
+            const p2 = document.getElementById('pass2').value;
+
+            if (!email.includes('@')) {
+                alert("Wpisz poprawny adres e-mail!");
+                return;
+            }
+
+            if (p1.length < 4) {
+                alert("Hasło musi mieć co najmniej 4 znaki!");
+                return;
+            }
+
+            if (p1 !== p2) {
+                alert("Hasła nie są takie same!");
+                return;
+            }
+
+            alert("Konto zostało pomyślnie utworzone w Qooqle!");
+            window.location.href = 'index.html'; // Powrót do logowania
+        }
+    </script>
 </body>
 </html>
