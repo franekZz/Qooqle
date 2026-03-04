@@ -2,155 +2,29 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logowanie – Qooqle</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f1f3f4; /* Lekko szare tło jak w Google */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            background-color: #fff;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            padding: 48px 40px; /* Duże odstępy wewnątrz */
-            width: 450px; /* Stała szerokość dla efektu "pudełka" */
-            min-height: 500px; /* Minimalna wysokość, żeby nie był za mały */
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-        }
-
-        .logo {
-            font-size: 32px; /* Większe logo */
-            font-weight: 500;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
+        * { box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #f1f3f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 48px 40px; width: 450px; min-height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); text-align: center; }
+        .logo { font-size: 32px; font-weight: 500; margin-bottom: 10px; }
         .blue { color: #4285F4; } .red { color: #EA4335; } .yellow { color: #FBBC05; } .green { color: #34A853; }
-
-        h2 { 
-            font-weight: 400; 
-            margin: 10px 0; 
-            font-size: 28px; /* Większy nagłówek */
-            text-align: center;
-        }
-
-        p { 
-            margin-bottom: 44px; 
-            color: #202124; 
-            text-align: center;
-            font-size: 16px;
-        }
-
-        .input-wrapper {
-            margin-bottom: 10px;
-        }
-
-        input { 
-            width: 100%; 
-            padding: 16px 15px; /* Wyższe pole wpisywania */
-            border: 1px solid #dadce0; 
-            border-radius: 4px; 
-            font-size: 16px;
-            transition: border 0.2s;
-        }
-
-        input:focus { 
-            outline: none; 
-            border: 2px solid #1a73e8; 
-            padding: 15px 14px; 
-        }
-
-        .forgot-link {
-            display: block;
-            text-align: left;
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-
-        .info-section {
-            margin-top: auto; /* Popycha tekst na dół kontenera */
-            font-size: 14px;
-            color: #5f6368;
-            line-height: 1.4;
-            text-align: left;
-            margin-bottom: 40px;
-        }
-
-        .buttons { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-
-        .btn-link { 
-            color: #1a73e8; 
-            text-decoration: none; 
-            font-weight: 500; 
-            font-size: 14px;
-            padding: 10px 0;
-        }
-
-        .btn-main { 
-            background: #1a73e8; 
-            color: white; 
-            border: none; 
-            padding: 12px 28px; /* Większy przycisk */
-            border-radius: 4px; 
-            font-weight: 500; 
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn-main:hover {
-            background: #1765cc;
-            box-shadow: 0 1px 2px 0 rgba(66,133,244,.3), 0 1px 3px 1px rgba(66,133,244,.15);
-        }
-
-        /* Responsywność dla małych ekranów */
-        @media (max-width: 450px) {
-            .container {
-                width: 100%;
-                height: 100vh;
-                border: none;
-                box-shadow: none;
-            }
-        }
+        input { width: 100%; padding: 16px 15px; margin: 20px 0 10px; border: 1px solid #dadce0; border-radius: 4px; font-size: 16px; }
+        .buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 50px; }
+        
+        /* KLUCZOWE: Stylizacja linku jako przycisku */
+        .btn-link { color: #1a73e8; text-decoration: none; font-weight: 500; font-size: 14px; cursor: pointer; }
+        .btn-main { background: #1a73e8; color: white; border: none; padding: 12px 28px; border-radius: 4px; font-weight: 500; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span>
-        </div>
+        <div class="logo"><span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span></div>
         <h2>Zaloguj się</h2>
         <p>Użyj konta Qooqle</p>
         
-        <form onsubmit="alert('Logowanie...'); return false;">
-            <div class="input-wrapper">
-                <input type="text" placeholder="E-mail lub telefon" required>
-                <a href="#" class="forgot-link">Nie pamiętasz adresu e-mail?</a>
-            </div>
-
-            <div class="info-section">
-                To nie Twój komputer? Użyj trybu gościa, aby zalogować się prywatnie. <a href="#" style="color:#1a73e8; text-decoration:none;">Dowiedz się więcej</a>
-            </div>
-
+        <form onsubmit="alert('Próba logowania...'); return false;">
+            <input type="text" placeholder="E-mail lub telefon" required>
             <div class="buttons">
                 <a href="register.html" class="btn-link">Utwórz konto</a>
                 <button type="submit" class="btn-main">Dalej</button>
