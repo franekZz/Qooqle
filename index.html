@@ -3,36 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logowanie – Qooqle</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Qooqle - Konto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo { font-size: 24px; font-weight: bold; margin-bottom: 8px; cursor: pointer; }
+        .blue { color: #4285F4; } .red { color: #EA4335; } .yellow { color: #FBBC05; } .green { color: #34A853; }
+
+        h2 { font-weight: 400; margin-bottom: 10px; }
+        .subtitle { margin-bottom: 30px; color: #202124; }
+
+        input {
+            width: 100%;
+            padding: 13px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input:focus { outline: none; border: 2px solid #1a73e8; padding: 12px 14px; }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .btn-text { color: #1a73e8; background: none; border: none; font-weight: bold; cursor: pointer; padding: 10px; }
+        .btn-main { background: #1a73e8; color: white; border: none; padding: 10px 24px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+
+        /* Ukrywanie sekcji */
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1 class="logo">
-                <span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span>
-            </h1>
-            <h2>Zaloguj się</h2>
-            <p>Użyj konta Qooqle</p>
-            
-            <form id="loginForm">
-                <div class="input-group">
-                    <input type="text" id="username" required>
-                    <label>E-mail lub telefon</label>
-                </div>
-                
-                <div class="footer-actions">
-                    <a href="#">Nie pamiętasz adresu e-mail?</a>
-                    <div class="info-text">To nie Twój komputer? Użyj trybu gościa, aby zalogować się prywatnie.</div>
-                </div>
 
-                <div class="buttons">
-                    <button type="button" class="secondary">Utwórz konto</button>
-                    <button type="submit" class="primary">Dalej</button>
-                </div>
-            </form>
+    <div class="container">
+        <div class="logo" onclick="location.reload()">
+            <span class="blue">Q</span><span class="red">o</span><span class="yellow">o</span><span class="blue">q</span><span class="green">l</span><span class="red">e</span>
+        </div>
+
+        <div id="login-section">
+            <h2>Zaloguj się</h2>
+            <p class="subtitle">Użyj konta Qooqle</p>
+            <input type="text" placeholder="E-mail lub telefon">
+            <div class="buttons">
+                <button class="btn-text" onclick="showRegister()">Utwórz konto</button>
+                <button class="btn-main" onclick="alert('Logowanie...')">Dalej</button>
+            </div>
+        </div>
+
+        <div id="register-section" class="hidden">
+            <h2>Utwórz konto</h2>
+            <p class="subtitle">Wprowadź swoje dane</p>
+            <input type="text" placeholder="Imię">
+            <input type="text" placeholder="Nazwisko">
+            <input type="email" placeholder="Twój nowy e-mail @qooqle.com">
+            <input type="password" placeholder="Hasło">
+            <div class="buttons">
+                <button class="btn-text" onclick="showLogin()">Zaloguj się zamiast tego</button>
+                <button class="btn-main" onclick="finishRegister()">Zarejestruj</button>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const loginSec = document.getElementById('login-section');
+        const registerSec = document.getElementById('register-section');
+
+        function showRegister() {
+            loginSec.classList.add('hidden');
+            registerSec.classList.remove('hidden');
+        }
+
+        function showLogin() {
+            registerSec.classList.add('hidden');
+            loginSec.classList.remove('hidden');
+        }
+
+        function finishRegister() {
+            alert('Konto Qooqle zostało utworzone! Możesz się teraz zalogować.');
+            showLogin();
+        }
+    </script>
 </body>
 </html>
